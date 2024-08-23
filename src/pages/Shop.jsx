@@ -6,6 +6,7 @@ import { products } from "../utils/products";
 import ShopList from "../components/ShopList";
 import Banner from "../components/Banner/Banner";
 import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
+import { Helmet } from 'react-helmet';
 
 const Shop = () => {
   const [filterList, setFilterList] = useState(
@@ -15,9 +16,14 @@ const Shop = () => {
 
   return (
     <Fragment>
-      <Banner title="product" />
+      <Helmet>
+        <title>Shop | Your Store Name</title>
+        <meta name="description" content="Browse our wide range of products including sofas, electronics, and more. Use filters and search to find what you need." />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+      <Banner title="Product Listings" />
       <section className="filter-bar">
-        <Container className="filter-bar-contianer">
+        <Container className="filter-bar-container">
           <Row className="justify-content-center">
             <Col md={4}>
               <FilterSelect setFilterList={setFilterList} />
