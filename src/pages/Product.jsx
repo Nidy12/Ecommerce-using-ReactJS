@@ -7,17 +7,19 @@ import { useParams } from "react-router-dom";
 import ProductDetails from "../components/ProductDetails/ProductDetails";
 import ProductReviews from "../components/ProductReviews/ProductReviews";
 import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
+import { Helmet } from 'react-helmet';
 
 const Product = () => {
   const { id } = useParams();
   const [selectedProduct, setSelectedProduct] = useState(
-    products.filter((item) => parseInt(item.id) === parseInt(id))[0]
+    products.find((item) => parseInt(item.id) === parseInt(id))
   );
   const [relatedProducts, setRelatedProducts] = useState([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     setSelectedProduct(
-      products.filter((item) => parseInt(item.id) === parseInt(id))[0]
+      products.find((item) => parseInt(item.id) === parseInt(id))
     );
     setRelatedProducts(
       products.filter(
@@ -32,6 +34,11 @@ const Product = () => {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>{selectedProduct?.productName} | Product Details</title>
+        <meta name="description" content={`Details about ${selectedProduct?.productName}. Read reviews and explore related products.`} />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       <Banner title={selectedProduct?.productName} />
       <ProductDetails selectedProduct={selectedProduct} />
       <ProductReviews selectedProduct={selectedProduct} />
