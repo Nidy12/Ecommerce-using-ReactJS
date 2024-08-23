@@ -34,7 +34,10 @@ const Cart = () => {
                 <div className="cart-list" key={item.id}>
                   <Row>
                     <Col className="image-holder" sm={4} md={3}>
-                      <img src={item.imgUrl} alt={`Image of ${item.productName}`} />
+                      <img
+                        src={item.imgUrl}
+                        alt={`Image of ${item.productName}`} // Ensure this description is meaningful
+                      />
                     </Col>
                     <Col sm={8} md={9}>
                       <Row className="cart-content justify-content-center">
